@@ -18,25 +18,27 @@
 // to indicate whether I2C initialization should occur in the
 // constructor; this parameter defaults to true if not given.
 
-// define release-independent I2C functions
-#if defined(__AVR_ATtiny44__) || defined(__AVR_ATtiny84__) || defined(__AVR_ATtiny45__) || defined(__AVR_ATtiny85__)
-#include <TinyWireM.h>
-#define i2cBegin TinyWireM.begin
-#define i2cBeginTransmission TinyWireM.beginTransmission
-#define i2cEndTransmission TinyWireM.endTransmission
-#define i2cRequestFrom TinyWireM.requestFrom
-#define i2cRead TinyWireM.receive
-#define i2cWrite TinyWireM.send
-#else
-#include <SoftwareWire.h>
-SoftwareWire myWire(2, 3);
-#define i2cBegin myWire.begin
-#define i2cBeginTransmission myWire.beginTransmission
-#define i2cEndTransmission myWire.endTransmission
-#define i2cRequestFrom myWire.requestFrom
-#define i2cRead myWire.read
-#define i2cWrite myWire.write
-#endif
+// define PINs to be used for softwarewire communication with chip
+
+#define I2C_HARDWARE 0      /* Disable hardware I2C */
+#define SDA_PORT PORTC      /* Define A2 as SDA */
+#define SDA_PIN 2           /* Define A2 as SDA */
+#define SCL_PORT PORTC      /* Define A3 as SCL */
+#define SCL_PIN 3           /* Define A3 as SCL */
+
+#define I2C_PULLUP 1        /* Enable internal 50k pullup */
+
+#define I2C_TIMEOUT 100     /* Max allowed slave timeout */
+#define I2C_SLOWMODE 1      /* Slower but more reliable communication */
+
+#include <SoftWire.h>
+SoftWire Wire = SoftWire();
+#define i2cBegin Wire.begin
+#define i2cBeginTransmission Wire.beginTransmission
+#define i2cEndTransmission Wire.endTransmission
+#define i2cRequestFrom Wire.requestFrom
+#define i2cRead Wire.read
+#define i2cWrite Wire.write
 
 #include <TimeLib.h>        //https://github.com/PaulStoffregen/Time
 #include <DS3232RTC.h>
