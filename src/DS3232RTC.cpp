@@ -29,7 +29,7 @@
 #define i2cWrite TinyWireM.send
 #else
 #include <SoftwareWire.h>
-SoftwareWire myWire(SDA_PIN_MCU, SCL_PIN_MCU);
+SoftwareWire myWire(2, 3);
 #define i2cBegin myWire.begin
 #define i2cBeginTransmission myWire.beginTransmission
 #define i2cEndTransmission myWire.endTransmission
