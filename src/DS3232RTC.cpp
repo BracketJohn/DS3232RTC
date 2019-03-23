@@ -34,8 +34,8 @@ SoftwareWire myWire(2, 3);
 #define i2cBeginTransmission myWire.beginTransmission
 #define i2cEndTransmission myWire.endTransmission
 #define i2cRequestFrom myWire.requestFrom
-#define i2cRead myWire.receive
-#define i2cWrite myWire.send
+#define i2cRead myWire.read
+#define i2cWrite myWire.write
 #endif
 
 #include <TimeLib.h>        //https://github.com/PaulStoffregen/Time
