@@ -27,22 +27,15 @@
 #define i2cRequestFrom TinyWireM.requestFrom
 #define i2cRead TinyWireM.receive
 #define i2cWrite TinyWireM.send
-#elif ARDUINO >= 100
-#include <Wire.h>
-#define i2cBegin Wire.begin
-#define i2cBeginTransmission Wire.beginTransmission
-#define i2cEndTransmission Wire.endTransmission
-#define i2cRequestFrom Wire.requestFrom
-#define i2cRead Wire.read
-#define i2cWrite Wire.write
 #else
-#include <Wire.h>
-#define i2cBegin Wire.begin
-#define i2cBeginTransmission Wire.beginTransmission
-#define i2cEndTransmission Wire.endTransmission
-#define i2cRequestFrom Wire.requestFrom
-#define i2cRead Wire.receive
-#define i2cWrite Wire.send
+#include <SoftwareWire.h>
+SoftwareWire myWire(SDA_PIN_MCU, SCL_PIN_MCU);
+#define i2cBegin myWire.begin
+#define i2cBeginTransmission myWire.beginTransmission
+#define i2cEndTransmission myWire.endTransmission
+#define i2cRequestFrom myWire.requestFrom
+#define i2cRead myWire.receive
+#define i2cWrite myWire.send
 #endif
 
 #include <TimeLib.h>        //https://github.com/PaulStoffregen/Time
