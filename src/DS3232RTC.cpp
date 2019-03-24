@@ -32,13 +32,13 @@
 #define I2C_SLOWMODE 1      /* Slower but more reliable communication */
 
 #include <SoftWire.h>
-SoftWire Wire = SoftWire();
-#define i2cBegin Wire.begin
-#define i2cBeginTransmission Wire.beginTransmission
-#define i2cEndTransmission Wire.endTransmission
-#define i2cRequestFrom Wire.requestFrom
-#define i2cRead Wire.read
-#define i2cWrite Wire.write
+SoftWire SWire = SoftWire();
+#define i2cBegin SWire.begin
+#define i2cBeginTransmission SWire.beginTransmission
+#define i2cEndTransmission SWire.endTransmission
+#define i2cRequestFrom SWire.requestFrom
+#define i2cRead SWire.read
+#define i2cWrite SWire.write
 
 #include <TimeLib.h>        //https://github.com/PaulStoffregen/Time
 #include <DS3232RTC.h>
